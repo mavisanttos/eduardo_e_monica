@@ -16,12 +16,12 @@ export class StartScene extends Phaser.Scene { // cria uma cena chamada StartSce
     };
 
     create() {
-        this.Start = this.add.image(this.larguraJogo/2, this.alturaJogo/2, "start").setScale(1.8).setInteractive(); // adiciona a tela de pré start, aumenta o tamanho e a torna interativa
+        this.Start = this.add.image(this.larguraJogo / 2, this.alturaJogo / 2, "start").setScale(1.8).setInteractive(); // adiciona a tela de pré start, aumenta o tamanho e a torna interativa
 
         this.Start.on("pointerover", () => {
             this.input.setDefaultCursor("pointer"); // quando o mouse passa sobre a imagem, o cursor muda para mãozinha clicável
         });
-        
+
         this.Start.on("pointerout", () => {
             this.input.setDefaultCursor("default"); // quando o mouse sai da imagem, o cursor volta ao normal
         });

@@ -15,14 +15,14 @@ export class WelcomeScene extends Phaser.Scene { // cria uma cena chamada Welcom
     }
 
     create() {
-        this.add.image(this.larguraJogo/2, this.alturaJogo/2, 'fundo').setScale(1.8); // adiciona o fundo da tela e aumenta seu tamanho
-        
-        this.botaoJogar = this.add.image(this.larguraJogo/2, 55, "play").setScale(0.2).setInteractive(); // adiciona um botão de start, diminui seu tamanho e a torna interativa
+        this.add.image(this.larguraJogo / 2, this.alturaJogo / 2, 'fundo').setScale(1.8); // adiciona o fundo da tela e aumenta seu tamanho
+
+        this.botaoJogar = this.add.image(this.larguraJogo / 2, 55, "play").setScale(0.2).setInteractive(); // adiciona um botão de start, diminui seu tamanho e a torna interativa
 
         this.botaoJogar.on("pointerover", () => {
             this.input.setDefaultCursor("pointer"); // quando o mouse passa sobre a imagem, o cursor muda para mãozinha clicável
         });
-        
+
         this.botaoJogar.on("pointerout", () => {
             this.input.setDefaultCursor("default"); // quando o mouse sai da imagem, o cursor volta ao normal
         });

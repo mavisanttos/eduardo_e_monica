@@ -1,8 +1,8 @@
 // cada linha imposta uma cena do jogo
-import {StartScene} from "./scenes/start.js";
-import {WelcomeScene} from "./scenes/welcome.js";
-import {GameScene} from "./scenes/game.js";
-import {EndScene} from "./scenes/end.js";
+import { StartScene } from "./scenes/start.js";
+import { WelcomeScene } from "./scenes/welcome.js";
+import { GameScene } from "./scenes/game.js";
+import { EndScene } from "./scenes/end.js";
 
 // configurações do jogo
 const config = {
