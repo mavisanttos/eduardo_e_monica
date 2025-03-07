@@ -18,7 +18,7 @@ export class GameScene extends Phaser.Scene { // cria uma cena chamada GameScene
     }
 
     create() {
-        this.add.image(this.larguraJogo/2, this.alturaJogo/2, "paisagem").setScale(1.45); // adiciona o fundo da cena
+        this.add.image(this.larguraJogo/2, this.alturaJogo/2, "paisagem").setScale(1.45); // adiciona o fundo da cenafgrfhsefsd
 
         // Setas
         this.cursors = this.input.keyboard.createCursorKeys();
