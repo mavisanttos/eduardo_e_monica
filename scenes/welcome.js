@@ -6,7 +6,7 @@ export class WelcomeScene extends Phaser.Scene { // cria uma cena chamada Welcom
     larguraJogo = config.width; // define a largura do jogo
 
     constructor() {
-        super("WelcomeScene"); // registra o nome da cena htghbgb
+        super("WelcomeScene"); // registra o nome da cena
     }
 
     preload() {
