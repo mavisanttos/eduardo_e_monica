@@ -18,6 +18,32 @@ export class GameScene extends Phaser.Scene { // cria uma cena chamada GameScene
     }
 
     create() {
+
+        this.input.on('pointerdown', (pointer) => {
+            const touchX = pointer.x;
+            const touchY = pointer.y;
+        
+            // Definir velocidade baseada na posição do toque
+            if (touchX < player.x) {
+                player.setVelocityX(-100);
+            } else {
+                player.setVelocityX(100);
+            }
+        
+            if (touchY < player.y) {
+                player.setVelocityY(-100);
+            } else {
+                player.setVelocityY(100);
+            }
+        });
+        
+        // Parar o personagem quando o toque for liberado
+        this.input.on('pointerup', () => {
+            player.setVelocityX(0);
+            player.setVelocityY(0);
+        });
+        
+
         this.add.image(this.larguraJogo / 2, this.alturaJogo / 2, "paisagem").setScale(1.45); // adiciona o fundo da cena
 
         this.cursors = this.input.keyboard.createCursorKeys(); // acessa as setas do teclado e atribui suas propriedades
