@@ -15,34 +15,38 @@ export class GameScene extends Phaser.Scene { // cria uma cena chamada GameScene
         this.load.image("plataforma", "assets/plataforma.png"); // carrega a imagem das plataformas
         this.load.spritesheet("eduparado", "assets/eduparado.png", { frameWidth: 128, frameHeight: 128 }); // carrega a spritesheet da personagem "eduardo" parado
         this.load.spritesheet("eduandando", "assets/eduandando.png", { frameWidth: 128, frameHeight: 128 }); // carrega a spritesheet da personagem "eduardo" andando
+        this.load.image('leftButton', 'assets/setaEsquerda.png');
+        this.load.image('rightButton', 'assets/setaDireita.png');
+        this.load.image('upButton', 'assets/setaCima.png');
+        this.load.image('downButton', 'assets/setaBaixo.png');
+
     }
 
     create() {
 
-        this.input.on('pointerdown', (pointer) => {
-            const touchX = pointer.x;
-            const touchY = pointer.y;
-        
-            // Definir velocidade baseada na posição do toque
-            if (touchX < player.x) {
-                player.setVelocityX(-100);
-            } else {
-                player.setVelocityX(100);
-            }
-        
-            if (touchY < player.y) {
-                player.setVelocityY(-100);
-            } else {
-                player.setVelocityY(100);
-            }
-        });
-        
-        // Parar o personagem quando o toque for liberado
-        this.input.on('pointerup', () => {
-            player.setVelocityX(0);
-            player.setVelocityY(0);
-        });
-        
+        this.leftButton = this.add.image(50, 500, 'leftButton').setInteractive();
+        this.rightButton = this.add.image(150, 500, 'rightButton').setInteractive();
+        this.upButton = this.add.image(100, 450, 'upButton').setInteractive();
+        this.downButton = this.add.image(100, 550, 'downButton').setInteractive();
+
+        // Tornando os botões semi-transparentes para melhor UX
+        this.leftButton.setAlpha(0.8);
+        this.rightButton.setAlpha(0.8);
+        this.upButton.setAlpha(0.8);
+        this.downButton.setAlpha(0.8);
+
+        // Eventos de toque
+        this.leftButton.on('pointerdown', () => { this.moveLeft = true; });
+        this.rightButton.on('pointerdown', () => { this.moveRight = true; });
+        this.upButton.on('pointerdown', () => { this.moveUp = true; });
+        this.downButton.on('pointerdown', () => { this.moveDown = true; });
+
+        // Parar o movimento ao soltar
+        this.leftButton.on('pointerup', () => { this.moveLeft = false; });
+        this.rightButton.on('pointerup', () => { this.moveRight = false; });
+        this.upButton.on('pointerup', () => { this.moveUp = false; });
+        this.downButton.on('pointerup', () => { this.moveDown = false; });
+
 
         this.add.image(this.larguraJogo / 2, this.alturaJogo / 2, "paisagem").setScale(1.45); // adiciona o fundo da cena
 
@@ -138,6 +142,27 @@ export class GameScene extends Phaser.Scene { // cria uma cena chamada GameScene
     }
 
     update() {
+
+        // Movimentação via Touch
+        if (this.moveLeft) {
+            this.edu.setVelocityX(-100);
+            this.edu.setFlipX(true);
+            if (this.edu.anims.currentAnim?.key !== 'andando') {
+                this.edu.play('andando');
+            }
+        } else if (this.moveRight) {
+            this.edu.setVelocityX(100);
+            this.edu.setFlipX(false);
+            if (this.edu.anims.currentAnim?.key !== 'andando') {
+                this.edu.play('andando');
+            }
+        } else {
+            this.edu.setVelocityX(0);
+            if (this.edu.anims.currentAnim?.key !== 'parado') {
+                this.edu.play('parado');
+            }
+        }
+
         this.monica.anims.play('parada', true); // mônica parada 
 
         // Eduardo
